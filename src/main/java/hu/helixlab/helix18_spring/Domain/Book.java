@@ -1,18 +1,21 @@
 package hu.helixlab.helix18_spring.Domain;
 
+
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+
+@Entity
 public class Book {
+
+    @Id
+    @GeneratedValue(strategy = GenerationType.SEQUENCE)
     private Integer id;
     private String name;
     private String isbn;
 
-    public Book() {
-    }
 
-    public Book(Integer id, String name, String isbn) {
-        this.id = id;
-        this.name = name;
-        this.isbn = isbn;
-    }
 
     public Integer getId() {
         return id;
@@ -36,14 +39,5 @@ public class Book {
 
     public void setIsbn(String isbn) {
         this.isbn = isbn;
-    }
-
-    @Override
-    public String toString() {
-        return "Book{" +
-                "id=" + id +
-                ", name='" + name + '\'' +
-                ", isbn='" + isbn + '\'' +
-                '}';
     }
 }
