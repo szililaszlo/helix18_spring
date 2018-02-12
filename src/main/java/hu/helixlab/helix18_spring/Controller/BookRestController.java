@@ -5,6 +5,8 @@ import hu.helixlab.helix18_spring.Service.BookService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
+
 @RestController
 @RequestMapping(value = "/books") //ha itt rárakjuk akkor a többi helyen már nem kell
 public class BookRestController {
@@ -19,10 +21,8 @@ public class BookRestController {
     }
 
    // PathVariable vs RequestParam különbség megtanulása
-
     @RequestMapping (value = "/{id}", method = RequestMethod.GET)
     public Book findById(@PathVariable("id") int id) {
-
         return bookService.findById(id);
     }
 
@@ -36,6 +36,10 @@ public class BookRestController {
       return bookService.updateById(id,book);
     }
 
+    @RequestMapping(value = "/allbooks", method = RequestMethod.GET)
+    public Iterable<Book> findAll() {
+        return bookService.getAll();
+    }
     //findAll
     //angular alkalmazás amivel ezeket az url-eket lehet hívin, fussanak a metódusok, nem futhat ugyanazon a porton mind2
     //Restcontrollernél kell @CrossOrigin annotcáió, minden metódusra

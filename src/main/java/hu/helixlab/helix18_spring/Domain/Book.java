@@ -1,10 +1,9 @@
 package hu.helixlab.helix18_spring.Domain;
 
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import javax.persistence.*;
+import java.util.HashSet;
+import java.util.Set;
 
 @Entity
 public class Book {
@@ -15,7 +14,8 @@ public class Book {
     private String name;
     private String isbn;
 
-
+    @OneToMany(cascade = CascadeType.ALL,fetch = FetchType.EAGER)
+    private Set<Category> categories = new HashSet<>();
 
     public Integer getId() {
         return id;
@@ -39,5 +39,10 @@ public class Book {
 
     public void setIsbn(String isbn) {
         this.isbn = isbn;
+    }
+
+    public Book addCategory(Category category) {
+        this.categories.add(category);
+        return this;
     }
 }

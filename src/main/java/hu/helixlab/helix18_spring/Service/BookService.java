@@ -32,7 +32,7 @@ public class BookService {
         oldBook.setName(newBook.getName());
         oldBook.setIsbn(newBook.getIsbn());
 
-        return  bookRepository.save(oldBook);
+        return bookRepository.save(oldBook);
     }
 
     public Book getTestBook() {
@@ -41,5 +41,9 @@ public class BookService {
         book.setName("Spring test book");
         book.setIsbn("aaaa-g5ge45");
         return book;
+    }
+
+    public Iterable<Book> getAll() {
+       return bookRepository.findAll();
     }
 }
