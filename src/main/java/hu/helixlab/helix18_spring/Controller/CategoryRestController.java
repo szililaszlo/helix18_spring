@@ -12,8 +12,12 @@ import org.springframework.web.bind.annotation.RestController;
 @RequestMapping(value = "/category")
 public class CategoryRestController {
 
+    //1. gyors megoldás, SINGLETON alapból
     @Autowired
     CategoryService categoryService;
+
+    //2. hbizotsoabb megoldás
+    //konstruktor alapú hívás
 
     @RequestMapping(value = "/categories", method = RequestMethod.GET)
     public Iterable<Category> findAll() {

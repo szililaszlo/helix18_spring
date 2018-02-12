@@ -17,6 +17,13 @@ public class Book {
     @OneToMany(cascade = CascadeType.ALL,fetch = FetchType.EAGER)
     private Set<Category> categories = new HashSet<>();
 
+    @ManyToMany(cascade = CascadeType.ALL)
+    @JoinTable(
+            name = "book_authors",
+            joinColumns = { @JoinColumn(name = "book_id") },
+            inverseJoinColumns = { @JoinColumn(name = "author_id") })
+    private Set<Author> authors = new HashSet<>();
+
     public Integer getId() {
         return id;
     }
@@ -43,6 +50,11 @@ public class Book {
 
     public Book addCategory(Category category) {
         this.categories.add(category);
+        return this;
+    }
+
+    public Book addAuthor(Author author) {
+        this.authors.add(author);
         return this;
     }
 }
